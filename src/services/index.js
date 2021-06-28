@@ -7,6 +7,7 @@ import salleService from './salle';
 import api from './api';
 
 const login = async (username, password) => {
+    if (username === "admin" && password === "admin")
     return await api.post('/admin/auth', {username, password});
 }
 
