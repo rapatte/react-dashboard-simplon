@@ -1,16 +1,12 @@
 import React, { useContext } from 'react';
-import { navigate } from 'gatsby';
-
 import { AuthContext } from '../store';
+import { Redirect, Route } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, location, ...rest }) => {
-    const { currentUser } = useContext(AuthContext);
-
-    if (!currentUser && location.pathname !== "/") {
-        navigate("/");
-        return null;
-    }
-    return <Component {...rest} />;
-};
+    const PrivateRoute = ({component: Component, ...rest}) => {
+        const store = useContext(AuthContext);
+        return (store.isAuth)
+        ? <Route {...rest} component={Component} />
+        : <Redirect to="/" />
+    };
 
 export default PrivateRoute;

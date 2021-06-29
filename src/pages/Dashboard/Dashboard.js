@@ -8,11 +8,11 @@ export default function DashboardScreen() {
     const getPromosdata = async () => {
         const response = await promoService.getAll()
         setPromos(response.data)
-        console.log(promos);
     }
     useEffect(() => {
         try {
-            getPromosdata();          
+            getPromosdata();
+            console.log(promos)         
         }
         catch (error) {
             console.log(error);
