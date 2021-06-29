@@ -1,7 +1,7 @@
 import React, {useState, useContext } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import useStyles from '../theme/forms.css';
-import { login } from '../services';
+import {login} from '../services';
 import { AuthContext } from '../store';
 
 const LoginForm = (props) => {
@@ -15,12 +15,13 @@ const LoginForm = (props) => {
     const handleClick = async (e) => {
         try{
             const response = await login(username, password)
+            console.log(response);
             localStorage.setItem("token", response.data.token)
             authStore.setToken(response.data.token)
             authStore.setIsAuth(true);
             props.history.push("/dashboard")
         } catch(error) {
-
+            console.log(error);
         }
     }
 
